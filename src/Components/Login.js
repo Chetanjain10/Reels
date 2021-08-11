@@ -1,18 +1,22 @@
-import React,{useState,useContext, useEffect} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
+import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider'
 export default function Login(props) {
     const[email,setEmail] = useState('');
     const[password,setPassword] = useState('');
     const[Loading,setLoading] = useState(false);
     const[error,setError] = useState("");
-    let {Login} = useContext(AuthContext);
+    const history = usehistory();
+    let {currentUser,Login} = useContext(AuthContext);
     const handleLogin= async(e)=>{
         e.preventDefault();
         try{
             console.log('Logging in user');
            setLoading(true);
            await Login(email,password);
+          
             setLoading(false);
+            usehistory.push('/');
         }catch{
             setError('Failed to Log in');
             setTimeout(()=>setError(''),2000);
@@ -20,6 +24,11 @@ export default function Login(props) {
         }
         
     }
+    useEffect(()=>{
+        if(currentUser){
+            history.push('/');
+        }
+    },[])
 
     return (
         <>
