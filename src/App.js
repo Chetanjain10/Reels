@@ -2,8 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Login';
 import Feed from './Components/Feed';
-import {BrowseRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Signup from './Components/Signup';
+import  PrivateRoute  from './Components/PrivateRoute';
 import { Authprovider } from './Context/AuthProvider';
 import Ioa from './Components/Ioa';
 function App() {
@@ -11,9 +12,9 @@ function App() {
     <Router>
       <Authprovider>
       <Switch>
-        <Route path='/' exact component={Feed} />
+        <PrivateRoute exact path='/' component={Feed} />
         <Route path='/login' component={Login} />
-        <Route path='/signup' component={Login} />
+        <Route path='/signup' component={Signup} />
       </Switch>
       </Authprovider>
     </Router>
