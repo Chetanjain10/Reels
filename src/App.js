@@ -1,24 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Feed from './Components/Feed';
-import AuthProvider from './Context/AuthProvider';
 import {BrowseRouter as Router, Switch, Route} from 'react-router-dom'
+import Signup from './Components/Signup';
+import { Authprovider } from './Context/AuthProvider';
+import Ioa from './Components/Ioa';
 function App() {
   return (
-    // <AuthProvider>
-    //   {/* <h1>Hello</h1> */}
-    //   <Signup />
-    // </AuthProvider>
     <Router>
-      <AuthProvider>
+      <Authprovider>
       <Switch>
-        <Route exact path='/' component={Feed} />
+        <Route path='/' exact component={Feed} />
         <Route path='/login' component={Login} />
-        <Route path='/signup' component={Signup}/>
+        <Route path='/signup' component={Login} />
       </Switch>
-      </AuthProvider>
+      </Authprovider>
     </Router>
   );
 }
