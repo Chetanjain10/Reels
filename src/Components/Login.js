@@ -6,7 +6,7 @@ export default function Login(props) {
     const[password,setPassword] = useState('');
     const[Loading,setLoading] = useState(false);
     const[error,setError] = useState("");
-    const history = usehistory();
+    const history = useHistory();
     let {currentUser,Login} = useContext(AuthContext);
     const handleLogin= async(e)=>{
         e.preventDefault();
@@ -16,7 +16,7 @@ export default function Login(props) {
            await Login(email,password);
           
             setLoading(false);
-            usehistory.push('/');
+            history.push('/');
         }catch{
             setError('Failed to Log in');
             setTimeout(()=>setError(''),2000);
